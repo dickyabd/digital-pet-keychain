@@ -48,9 +48,9 @@ The owner tested the integrated touch behavior and reported that it looked good.
 
 This candidate adds a fear reaction when five short taps occur within three seconds. The eyes shrink, move closer together, and tremble briefly. Physical Verify/Upload and behavior testing are pending.
 
-**Milestone 12 — Big Eyes v2.8 DINARA Marquee: firmware prepared, test pending**
+**Milestone 12 — Big Eyes v2.8 DINARA Marquee: tested on device**
 
-A continuous touch hold for three seconds launches a one-pass right-to-left DINARA marquee. The name uses a pink FreeSans Bold Oblique font with a white outline and pulsing pink hearts outlined in white. After the whole word exits the left edge, the pet face returns automatically. A 700 ms to under-three-second hold, when released, changes the eye color. Physical compile/upload and visual testing are pending.
+The project owner reports that the v2.8 firmware was tested successfully. A continuous touch hold for three seconds launches a one-pass right-to-left DINARA marquee. The name uses a pink FreeSans Bold Oblique font with a white outline and pulsing pink hearts outlined in white. After the whole word exits the left edge, the pet face returns automatically. A 700 ms to under-three-second hold, when released, changes the eye color.
 
 ## Hardware baseline
 
@@ -114,7 +114,7 @@ The LCD VCC and TTP223B VCC connect to 3.3 V. LCD GND and TTP223B GND share comm
 - [Big Eyes v2.5 — Cartoon Personality Engine](firmware/big-eyes-v2-5-cartoon-personality/DigitalPet_BigEyes_v2_5_CartoonPersonality.ino)
 - [Big Eyes v2.6 — Touch Interaction (tested)](firmware/big-eyes-v2-6-touch-interaction/DigitalPet_BigEyes_v2_6_TouchInteraction.ino)
 - [Big Eyes v2.7 — Five-Tap Fear Reaction (test pending)](firmware/big-eyes-v2-7-five-tap-fear/DigitalPet_BigEyes_v2_7_FiveTapFear.ino)
-- [Big Eyes v2.8 — DINARA pink marquee with popping hearts (test pending)](firmware/big-eyes-v2-8-dinara-marquee/DigitalPet_BigEyes_v2_8_DinaraMarquee.ino)
+- [Big Eyes v2.8 — DINARA pink marquee with popping hearts (tested)](firmware/big-eyes-v2-8-dinara-marquee/DigitalPet_BigEyes_v2_8_DinaraMarquee.ino)
 - [TTP223B standalone sensor test](firmware/touch-test/DigitalPet_TouchTest_v1.ino)
 
 The working LCD initialization is:
@@ -145,12 +145,11 @@ Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together be
 
 ## Next milestones
 
-1. Verify and upload Big Eyes v2.8; test the DINARA marquee and heart animation.
-2. Verify and upload Big Eyes v2.7 if the five-tap fear reaction has not yet been tested.
-3. Integrate MPU6050 after selecting non-conflicting I2C pins.
-4. Add buzzer and tactile buttons.
-5. Design and verify the LiPo power and charging system.
-6. Design the keychain enclosure.
+1. Confirm the five-tap fear reaction behavior remains correct in the tested v2.8 build.
+2. Integrate MPU6050 after selecting non-conflicting I2C pins.
+3. Add buzzer and tactile buttons.
+4. Design and verify the LiPo power and charging system.
+5. Design the keychain enclosure.
 
 ## Safety and reproducibility notes
 
