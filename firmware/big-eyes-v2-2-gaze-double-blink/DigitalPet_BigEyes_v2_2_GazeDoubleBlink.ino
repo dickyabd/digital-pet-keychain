@@ -90,6 +90,7 @@ unsigned long lastFrameAt = 0;
 unsigned long nextGazeAt = 0;
 
 bool secondBlinkQueued = false;
+bool isSecondBlink = false;
 
 uint8_t gazeIndex = 0;
 
@@ -220,8 +221,13 @@ void updateBlink(unsigned long now) {
       currentEyeHeight = EYE_OPEN_HEIGHT;
 
       if ((long)(now - nextBlinkAt) >= 0) {
-        // About one in five blinks is followed by a second blink.
-        secondBlinkQueued = (random(0, 5) == 0);
+        // About one in five normal blinks is followed by exactly
+        // one additional blink. The second blink cannot chain again.
+        if (isSecondBlink) {
+          secondBlinkQueued = false;
+        } else {
+          secondBlinkQueued = (random(0, 5) == 0);
+        }
 
         blinkState = EYES_CLOSING;
         stateStartedAt = now;
@@ -261,10 +267,12 @@ void updateBlink(unsigned long now) {
         blinkState = EYES_OPEN;
 
         if (secondBlinkQueued) {
-          // Short pause before the second blink.
+          // Queue exactly one second blink.
           nextBlinkAt = now + 260;
           secondBlinkQueued = false;
+          isSecondBlink = true;
         } else {
+          isSecondBlink = false;
           nextBlinkAt = now + random(2500, 5500);
         }
       } else {
