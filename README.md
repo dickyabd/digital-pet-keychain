@@ -22,7 +22,11 @@ The updated sketch draws both eyes into one 16-bit off-screen canvas and transfe
 
 **Milestone 05 — Big Eyes v2.2 Gaze + Double Blink: firmware prepared, hardware test pending**
 
-A new sketch adds center, left, right, up, down, upper-left, and upper-right gaze directions, with center returns between looks. It also adds occasional double blinks. This version has been committed but has not yet been compiled or visually tested on the physical LCD.
+This iteration adds gaze directions with pupils and occasional double blinks. It is retained as an experimental version, but the design direction has since changed to remove pupils.
+
+**Milestone 06 — Big Eyes v2.3 Solid Cartoon Eyes: firmware prepared, hardware test pending**
+
+This new candidate removes pupils, highlights, and inner dots. It displays two much larger solid cyan eye shapes and moves the whole pair to suggest cartoon-like gaze directions. It retains synchronized blinking and occasional double blinks. Physical compile/upload and visual testing are still required.
 
 ## Hardware baseline
 
@@ -68,7 +72,8 @@ The LCD VCC connects to the 3.3 V rail and LCD GND to the GND rail. Breadboard p
 - [Big Eyes v1 — static cyan eyes](firmware/big-eyes-v1/DigitalPet_BigEyes_v1.ino)
 - [Big Eyes v2 — first auto-blink iteration (visual artifacts)](firmware/big-eyes-v2-auto-blink/DigitalPet_BigEyes_v2_AutoBlink.ino)
 - [Big Eyes v2.1 — smooth synchronized auto-blink](firmware/big-eyes-v2-1-smooth-blink/DigitalPet_BigEyes_v2_1_SmoothBlink.ino)
-- [Big Eyes v2.2 — gaze directions + occasional double blink (test pending)](firmware/big-eyes-v2-2-gaze-double-blink/DigitalPet_BigEyes_v2_2_GazeDoubleBlink.ino)
+- [Big Eyes v2.2 — gaze directions + occasional double blink (pupils; experimental)](firmware/big-eyes-v2-2-gaze-double-blink/DigitalPet_BigEyes_v2_2_GazeDoubleBlink.ino)
+- [Big Eyes v2.3 — large solid cartoon eyes without pupils (test pending)](firmware/big-eyes-v2-3-solid-cartoon-eyes/DigitalPet_BigEyes_v2_3_SolidCartoonEyes.ino)
 
 The working display initialization is:
 
@@ -80,7 +85,7 @@ tft.setRotation(2);
 
 **SPI Mode 3** and rotation 2 are retained from the visible Big Eyes v1 prototype.
 
-The firmware uses Adafruit GFX / Adafruit ST7789. v2.1 and v2.2 use a 160 × 100 pixel, 16-bit `GFXcanvas16` buffer (32,000 bytes) to render both eyes together before sending the bitmap to the LCD. No TFT_eSPI, GC9A01, or MPU6050 is used by these sketches.
+The firmware uses Adafruit GFX / Adafruit ST7789. v2.1 and later versions use an off-screen 16-bit `GFXcanvas16` to render both eyes together before sending the bitmap to the LCD. The v2.3 canvas uses 240 × 174 pixels (83,520 bytes). No TFT_eSPI or GC9A01 is used by these sketches.
 
 ## Documentation
 
@@ -90,17 +95,17 @@ The firmware uses Adafruit GFX / Adafruit ST7789. v2.1 and v2.2 use a 160 × 100
 - [Big Eyes v2 Auto Blink notes](docs/04-big-eyes-v2-auto-blink.md)
 - [Big Eyes v2.1 Smooth Blink notes](docs/05-big-eyes-v2-1-smooth-blink.md)
 - [Big Eyes v2.2 Gaze + Double Blink notes](docs/06-big-eyes-v2-2-gaze-double-blink.md)
+- [Big Eyes v2.3 Solid Cartoon Eyes notes](docs/07-big-eyes-v2-3-solid-cartoon-eyes.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Verify and upload Big Eyes v2.2; confirm gaze directions and occasional double blinks.
-2. Add more expressive eye shapes.
-3. Add touch interaction (TTP223B).
-4. Integrate MPU6050 motion sensing.
-5. Add buzzer and tactile buttons.
-6. Design and verify the LiPo power and charging system.
-7. Design the keychain enclosure.
+1. Verify and upload Big Eyes v2.3; tune cartoon gaze movement and eye size.
+2. Add touch interaction (TTP223B).
+3. Integrate MPU6050 motion sensing.
+4. Add buzzer and tactile buttons.
+5. Design and verify the LiPo power and charging system.
+6. Design the keychain enclosure.
 
 ## Safety and reproducibility notes
 
