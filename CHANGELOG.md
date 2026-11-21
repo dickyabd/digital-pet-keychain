@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-21 — Big Eyes v1 milestone
+
+- Added `firmware/big-eyes-v1/DigitalPet_BigEyes_v1.ino`.
+- Reused the verified ESP32-S3 and ST7789 wiring.
+- Retained SPI Mode 3 and set display rotation to 2 for the upright screen orientation.
+- Displayed two large cyan eyes with white highlights.
+- This version is a static prototype; automatic blinking, eye movement, and sensor interactions are future work.
+
 ## 2026-11-21 — Initial hardware milestone
 
 - Set up ESP32-S3 N16R8 with Arduino IDE 2.3.11.
