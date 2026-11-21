@@ -732,7 +732,7 @@ void updateTouch(unsigned long now) {
   int rawTouch = digitalRead(TOUCH_PIN);
 
   // Do not launch a second gesture while a visual slide is in progress.
-  // Continue tracking the sensor so the input cannot remain stuck HIGH.
+  // Still allow the original continuous hold to reach the 3-second DINARA trigger.
   if (slideActive) {
     if (rawTouch != lastRawTouchState) {
       lastRawTouchState = rawTouch;
@@ -743,11 +743,24 @@ void updateTouch(unsigned long now) {
         now - rawTouchChangedAt >= TOUCH_DEBOUNCE_MS) {
       stableTouchState = rawTouch;
       touchActive = (stableTouchState == HIGH);
+
+      // A new touch that begins during a slide is ignored.
+      if (touchActive) {
+        touchStartedAt = now;
+        longPressHandled = true;
+        nameHoldHandled = true;
+      }
     }
 
-    if (touchActive) {
-      longPressHandled = true;
+    // A hold that started before the roulette slide is allowed to
+    // continue and may still launch DINARA at the 3-second mark.
+    if (touchActive &&
+        !nameHoldHandled &&
+        now - touchStartedAt >= NAME_HOLD_MS) {
       nameHoldHandled = true;
+      longPressHandled = true;
+      triggerNameMarquee(now);
+      return;
     }
 
     return;
