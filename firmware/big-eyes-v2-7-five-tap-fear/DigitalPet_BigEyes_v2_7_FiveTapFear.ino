@@ -3,8 +3,8 @@
 #include <Adafruit_ST7789.h>
 
 // ============================================================
-// DIGITAL PET - BIG EYES V2.6
-// Touch Interaction + Cartoon Personality
+// DIGITAL PET - BIG EYES V2.7
+// Five-Tap Fear + Touch Interaction + Cartoon Personality
 // ESP32-S3 N16R8 + YY-PS130-V4.0 ST7789 LCD
 // ============================================================
 
@@ -795,9 +795,10 @@ void setup() {
   nextBlinkAt = now + random(1800, 3500);
 
   Serial.println();
-  Serial.println("DIGITAL PET V2.6 - TOUCH INTERACTION");
+  Serial.println("DIGITAL PET V2.7 - FIVE-TAP FEAR");
   Serial.println("TTP223B active HIGH on GPIO 4");
-  Serial.println("Short touch: happy reaction");
+  Serial.println("1-4 short taps: happy reaction");
+  Serial.println("5 short taps within 3 seconds: fear reaction");
   Serial.println("Long touch (>700 ms): change eye color");
   Serial.println("Serial: P=panic, B=blink, C=center");
   Serial.println("Canvas allocated successfully.");
