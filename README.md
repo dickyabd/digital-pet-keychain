@@ -12,9 +12,13 @@ The prototype successfully displayed the text **DIGITAL PET** and a yellow circl
 
 The prototype successfully displayed a pair of large cyan eyes with white highlights on the ST7789 display. This is the static eye baseline.
 
-**Milestone 03 — Big Eyes v2 Auto Blink: firmware prepared, hardware test pending**
+**Milestone 03 — Big Eyes v2 Auto Blink: superseded prototype**
 
-A new non-blocking automatic blinking sketch has been added. It preserves the known-good LCD configuration and animates both eyes through closing, closed, and opening phases. The new sketch still needs to be compiled, uploaded, and visually tested on the physical prototype.
+The first non-blocking blinking version was tested and showed visible drawing artifacts. It is retained as a historical iteration.
+
+**Milestone 04 — Big Eyes v2.1 Smooth Blink: visual test passed**
+
+The updated sketch draws both eyes into one 16-bit off-screen canvas and transfers the combined image to the LCD. The project owner reported that the latest video no longer showed the earlier visible glitch. This is a visual prototype test, not a measured FPS or long-duration reliability test.
 
 ## Hardware baseline
 
@@ -58,7 +62,8 @@ The LCD VCC connects to the 3.3 V rail and LCD GND to the GND rail. Breadboard p
 
 - [LCD test baseline](firmware/lcd-test/lcd-test.ino)
 - [Big Eyes v1 — static cyan eyes](firmware/big-eyes-v1/DigitalPet_BigEyes_v1.ino)
-- [Big Eyes v2 — automatic blinking (test pending)](firmware/big-eyes-v2-auto-blink/DigitalPet_BigEyes_v2_AutoBlink.ino)
+- [Big Eyes v2 — first auto-blink iteration (visual artifacts)](firmware/big-eyes-v2-auto-blink/DigitalPet_BigEyes_v2_AutoBlink.ino)
+- [Big Eyes v2.1 — smooth synchronized auto-blink](firmware/big-eyes-v2-1-smooth-blink/DigitalPet_BigEyes_v2_1_SmoothBlink.ino)
 
 The working display initialization is:
 
@@ -68,9 +73,9 @@ tft.init(240, 240, SPI_MODE3);
 tft.setRotation(2);
 ```
 
-**SPI Mode 3** and rotation 2 are the settings that produced the visible Big Eyes v1 image in the prototype.
+**SPI Mode 3** and rotation 2 are retained from the visible Big Eyes v1 prototype.
 
-Big Eyes v1 and v2 use Adafruit GFX drawing primitives. They do not require TFT_eSPI, sprite buffering, PSRAM allocation, or the MPU6050.
+Big Eyes v1, v2, and v2.1 use Adafruit GFX / Adafruit ST7789. v2.1 adds a 160 × 100 pixel, 16-bit `GFXcanvas16` buffer (32,000 bytes) to render both eyes together before sending the bitmap to the LCD. No TFT_eSPI, GC9A01, or MPU6050 is used by these sketches.
 
 ## Documentation
 
@@ -78,11 +83,12 @@ Big Eyes v1 and v2 use Adafruit GFX drawing primitives. They do not require TFT_
 - [Troubleshooting notes](docs/02-troubleshooting.md)
 - [Big Eyes v1 notes](docs/03-big-eyes-v1.md)
 - [Big Eyes v2 Auto Blink notes](docs/04-big-eyes-v2-auto-blink.md)
+- [Big Eyes v2.1 Smooth Blink notes](docs/05-big-eyes-v2-1-smooth-blink.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Verify and upload Big Eyes v2; confirm synchronized automatic blinking.
+1. Tune blink behavior and add occasional double-blinks.
 2. Add eye movement and expressions.
 3. Add touch interaction (TTP223B).
 4. Integrate MPU6050 motion sensing.
