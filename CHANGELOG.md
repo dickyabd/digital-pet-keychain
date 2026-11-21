@@ -1,12 +1,21 @@
 # Changelog
 
+## 2026-11-21 — Big Eyes v2.1 Smooth Blink visually verified
+
+- Added `firmware/big-eyes-v2-1-smooth-blink/DigitalPet_BigEyes_v2_1_SmoothBlink.ino`.
+- Added off-screen rendering with one 160 × 100, 16-bit GFX canvas for both eyes.
+- Added synchronized close, hold, and open phases.
+- Transferred the combined eye image to the LCD with `drawRGBBitmap()`.
+- Project owner reported that the latest video no longer showed the visible glitch seen in v2.
+- Added v2.1 implementation notes.
+
 ## 2026-11-21 — Big Eyes v2 Auto Blink firmware prepared
 
 - Added `firmware/big-eyes-v2-auto-blink/DigitalPet_BigEyes_v2_AutoBlink.ino`.
 - Added non-blocking blink state machine using `millis()`.
 - Added closing, closed, and opening phases with a randomized pause between blinks.
 - Preserved the verified ST7789, SPI Mode 3, GPIO, and rotation 2 configuration.
-- Physical compile/upload/display test is pending.
+- First visual test showed visible drawing artifacts; retained as a historical iteration.
 
 ## 2026-11-21 — Big Eyes v1 milestone
 
