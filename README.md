@@ -20,13 +20,17 @@ The first non-blocking blinking version was tested and showed visible drawing ar
 
 The updated sketch draws both eyes into one 16-bit off-screen canvas and transfers the combined image to the LCD. The project owner reported that the latest video no longer showed the earlier visible glitch. This is a visual prototype test, not a measured FPS or long-duration reliability test.
 
-**Milestone 05 — Big Eyes v2.2 Gaze + Double Blink: firmware prepared, hardware test pending**
+**Milestone 05 — Big Eyes v2.2 Gaze + Double Blink: experimental**
 
-This iteration adds gaze directions with pupils and occasional double blinks. It is retained as an experimental version, but the design direction has since changed to remove pupils.
+This iteration adds gaze directions with pupils and occasional double blinks. It is retained as an experimental version; the design direction subsequently changed to remove pupils.
 
-**Milestone 06 — Big Eyes v2.3 Solid Cartoon Eyes: firmware prepared, hardware test pending**
+**Milestone 06 — Big Eyes v2.3 Solid Cartoon Eyes: superseded design iteration**
 
-This new candidate removes pupils, highlights, and inner dots. It displays two much larger solid cyan eye shapes and moves the whole pair to suggest cartoon-like gaze directions. It retains synchronized blinking and occasional double blinks. Physical compile/upload and visual testing are still required.
+This candidate removed pupils and enlarged the solid cyan eye shapes. The project owner reported that the eyes were too large and their horizontal movement was not exaggerated enough.
+
+**Milestone 07 — Big Eyes v2.4 Exaggerated Cartoon Gaze: firmware prepared, hardware test pending**
+
+This candidate reduces base eye dimensions, increases horizontal and vertical gaze travel, and adds direction-dependent squash-and-stretch. It retains solid eyes only, without pupils or highlights. Physical compile/upload and visual tests are still required.
 
 ## Hardware baseline
 
@@ -73,7 +77,8 @@ The LCD VCC connects to the 3.3 V rail and LCD GND to the GND rail. Breadboard p
 - [Big Eyes v2 — first auto-blink iteration (visual artifacts)](firmware/big-eyes-v2-auto-blink/DigitalPet_BigEyes_v2_AutoBlink.ino)
 - [Big Eyes v2.1 — smooth synchronized auto-blink](firmware/big-eyes-v2-1-smooth-blink/DigitalPet_BigEyes_v2_1_SmoothBlink.ino)
 - [Big Eyes v2.2 — gaze directions + occasional double blink (pupils; experimental)](firmware/big-eyes-v2-2-gaze-double-blink/DigitalPet_BigEyes_v2_2_GazeDoubleBlink.ino)
-- [Big Eyes v2.3 — large solid cartoon eyes without pupils (test pending)](firmware/big-eyes-v2-3-solid-cartoon-eyes/DigitalPet_BigEyes_v2_3_SolidCartoonEyes.ino)
+- [Big Eyes v2.3 — large solid cartoon eyes without pupils (superseded)](firmware/big-eyes-v2-3-solid-cartoon-eyes/DigitalPet_BigEyes_v2_3_SolidCartoonEyes.ino)
+- [Big Eyes v2.4 — smaller solid eyes, exaggerated gaze, squash-and-stretch (test pending)](firmware/big-eyes-v2-4-exaggerated-cartoon-gaze/DigitalPet_BigEyes_v2_4_ExaggeratedCartoonGaze.ino)
 
 The working display initialization is:
 
@@ -85,7 +90,7 @@ tft.setRotation(2);
 
 **SPI Mode 3** and rotation 2 are retained from the visible Big Eyes v1 prototype.
 
-The firmware uses Adafruit GFX / Adafruit ST7789. v2.1 and later versions use an off-screen 16-bit `GFXcanvas16` to render both eyes together before sending the bitmap to the LCD. The v2.3 canvas uses 240 × 174 pixels (83,520 bytes). No TFT_eSPI or GC9A01 is used by these sketches.
+The firmware uses Adafruit GFX / Adafruit ST7789. The canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together before transferring the bitmap to the LCD. v2.4 uses a 240 × 174 pixel canvas (83,520 bytes). No TFT_eSPI or GC9A01 is used by these sketches.
 
 ## Documentation
 
@@ -96,11 +101,12 @@ The firmware uses Adafruit GFX / Adafruit ST7789. v2.1 and later versions use an
 - [Big Eyes v2.1 Smooth Blink notes](docs/05-big-eyes-v2-1-smooth-blink.md)
 - [Big Eyes v2.2 Gaze + Double Blink notes](docs/06-big-eyes-v2-2-gaze-double-blink.md)
 - [Big Eyes v2.3 Solid Cartoon Eyes notes](docs/07-big-eyes-v2-3-solid-cartoon-eyes.md)
+- [Big Eyes v2.4 Exaggerated Cartoon Gaze notes](docs/08-big-eyes-v2-4-exaggerated-cartoon-gaze.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Verify and upload Big Eyes v2.3; tune cartoon gaze movement and eye size.
+1. Verify and upload Big Eyes v2.4; tune cartoon gaze and eye dimensions.
 2. Add touch interaction (TTP223B).
 3. Integrate MPU6050 motion sensing.
 4. Add buzzer and tactile buttons.
