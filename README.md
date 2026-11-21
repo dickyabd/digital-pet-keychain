@@ -64,6 +64,10 @@ This version adds five eye presets: Normal (white sclera / navy oval pupil), Cut
 
 This revision makes the eye-style roulette begin immediately when a touch hold reaches 700 ms, rather than waiting for release. The five styles visibly cycle and slow down over roughly 2.2 seconds. A bottom-screen ROLLING label and progress bar make the animation state explicit, followed by a short selected-style label. Releasing touch does not cancel the roulette. A continuous three-second hold still takes priority and launches the DINARA marquee. Physical testing is pending.
 
+**Milestone 16 — Big Eyes v3.2 Horizontal Sliding Carousel: firmware prepared, device test pending**
+
+This revision changes the eye-style roulette from in-place style replacement to a full-frame horizontal slide: the outgoing pair of eyes moves left while the incoming style enters from the right. The same transition is used when DINARA enters after the three-second hold and when the eyes return after the marquee exits. It retains the five eye styles, slowing roulette, visible status/progress indicator, touch gesture mapping, and Adafruit ST7789 wiring. Physical testing is pending.
+
 ## Hardware baseline
 
 | Item | Value |
@@ -130,6 +134,7 @@ The LCD VCC and TTP223B VCC connect to 3.3 V. LCD GND and TTP223B GND share comm
 - [Big Eyes v2.9 — permanent moving pupils (device test pending)](firmware/big-eyes-v2-9-permanent-pupils/DigitalPet_BigEyes_v2_9_PermanentPupils.ino)
 - [Big Eyes v3.0 — five eye styles + slowing roulette (device test pending)](firmware/big-eyes-v3-0-eye-style-roulette/DigitalPet_BigEyes_v3_0_EyeStyleRoulette.ino)
 - [Big Eyes v3.1 — visible hold-triggered eye carousel (device test pending)](firmware/big-eyes-v3-1-visible-eye-carousel/DigitalPet_BigEyes_v3_1_VisibleEyeCarousel.ino)
+- [Big Eyes v3.2 — horizontal sliding carousel and DINARA transitions (device test pending)](firmware/big-eyes-v3-2-horizontal-sliding-carousel/DigitalPet_BigEyes_v3_2_HorizontalSlidingCarousel.ino)
 - [TTP223B standalone sensor test](firmware/touch-test/DigitalPet_TouchTest_v1.ino)
 
 The working LCD initialization is:
@@ -159,12 +164,13 @@ Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together be
 - [Big Eyes v2.9 Permanent Pupils notes](docs/13-big-eyes-v2-9-permanent-pupils.md)
 - [Big Eyes v3.0 Eye Style Roulette notes](docs/14-big-eyes-v3-0-eye-style-roulette.md)
 - [Big Eyes v3.1 Visible Eye Carousel notes](docs/15-big-eyes-v3-1-visible-eye-carousel.md)
+- [Big Eyes v3.2 Horizontal Sliding Carousel notes](docs/16-big-eyes-v3-2-horizontal-sliding-carousel.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Compile, upload, and visually test v3.1 immediate roulette start, style cycling, slowdown, and progress/result indicator.
-2. Confirm five-tap fear and DINARA behavior remain correct in v3.1.
+1. Compile, upload, and visually test v3.2 horizontal style-to-style slides, DINARA entrance, and return-to-eyes slide.
+2. Confirm five-tap fear, roulette slowdown, and touch gesture priority remain correct in v3.2.
 3. Integrate MPU6050 after selecting non-conflicting I2C pins.
 4. Add buzzer and tactile buttons.
 5. Design and verify the LiPo power and charging system.
