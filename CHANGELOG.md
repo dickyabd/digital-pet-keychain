@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-21 — Big Eyes v2.2 Gaze + Double Blink prepared
+
+- Added `firmware/big-eyes-v2-2-gaze-double-blink/DigitalPet_BigEyes_v2_2_GazeDoubleBlink.ino`.
+- Added automatic gaze sequence: center, left, right, up, down, upper-left, and upper-right, returning to center between directions.
+- Added smooth pupil movement with bounded offsets inside each eye.
+- Added occasional double blink behavior.
+- Preserved the v2.1 off-screen canvas renderer and verified ST7789 wiring / SPI Mode 3 settings.
+- Physical compile, upload, and visual tests are pending.
+
 ## 2026-11-21 — Big Eyes v2.1 Smooth Blink visually verified
 
 - Added `firmware/big-eyes-v2-1-smooth-blink/DigitalPet_BigEyes_v2_1_SmoothBlink.ino`.
