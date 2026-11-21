@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-11-22 — Big Eyes v3.0 Eye Style Roulette prepared
+
+- Added `firmware/big-eyes-v3-0-eye-style-roulette/DigitalPet_BigEyes_v3_0_EyeStyleRoulette.ino`.
+- Added five full eye presets: Normal, Cute, Star, Heart, and Fire, each with a distinct sclera and pupil treatment.
+- Added a medium-hold gesture (700 ms to under 3 seconds, then release) that starts a roughly 2.2-second roulette.
+- Roulette cycles eye styles quickly at first, then slows down before selecting a random final style.
+- The selected style stays active until the next roulette; it is not yet saved across power cycles.
+- Preserved the v2.9/v2.8 face animation, touch debounce, short-tap happy response, five-tap fear reaction, three-second DINARA marquee, and serial debug commands.
+- Kept the verified Adafruit ST7789 setup and pin mapping: LCD GPIO 12/11/8/10 and TTP223B SIG GPIO 4.
+- Adapted the eye-style and roulette concepts from the supplied Gemini text. Did not import its TFT_eSPI, MPU6050/I2C pin 8/9, alternate pet modes, or water simulation.
+- Added v3.0 documentation. Compile, upload, and physical testing are pending.
+
 ## 2026-11-22 — Big Eyes v2.9 Permanent Pupils prepared
 
 - Added `firmware/big-eyes-v2-9-permanent-pupils/DigitalPet_BigEyes_v2_9_PermanentPupils.ino`.
