@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-21 — Big Eyes v2.5 Cartoon Personality Engine prepared
+
+- Added `firmware/big-eyes-v2-5-cartoon-personality/DigitalPet_BigEyes_v2_5_CartoonPersonality.ino`.
+- Added randomized idle gaze across left, right, up, down, upper-left, and upper-right directions, returning to center between looks.
+- Added damped-spring gaze motion with a small natural overshoot.
+- Preserved solid cyan eyes without pupils, highlights, inner dots, or a mouth.
+- Added direction-dependent squash-and-stretch.
+- Retained synchronized blinking and occasional double blinking.
+- Added a simulated panic/startle reaction controlled by Serial Monitor command `P`, plus `B` for a forced blink and `C` to center the gaze.
+- Physical compile/upload and visual tests are pending. No touch sensor or MPU6050 is connected in this version.
+
 ## 2026-11-21 — Big Eyes v2.4 Exaggerated Cartoon Gaze prepared
 
 - Added `firmware/big-eyes-v2-4-exaggerated-cartoon-gaze/DigitalPet_BigEyes_v2_4_ExaggeratedCartoonGaze.ino`.
@@ -8,7 +19,7 @@
 - Added direction-dependent squash-and-stretch for horizontal, vertical, and diagonal looks.
 - Kept solid eyes only, with no pupils, highlights, or inner dots.
 - Preserved canvas rendering, synchronized blink, occasional double blink, and known-good ST7789 / SPI Mode 3 configuration.
-- Physical compile, upload, and visual tests are pending.
+- Physical compile/upload and visual tests were pending.
 
 ## 2026-11-21 — Big Eyes v2.3 Solid Cartoon Eyes prepared
 
@@ -50,7 +61,7 @@
 
 - Added `firmware/big-eyes-v1/DigitalPet_BigEyes_v1.ino`.
 - Reused the verified ESP32-S3 and ST7789 wiring.
-- Retained SPI Mode 3 and set display rotation to 2 for the upright screen orientation.
+- Retained SPI Mode 3 and set rotation to 2 for the upright screen orientation.
 - Displayed two large cyan eyes with white highlights.
 - This version is a static prototype; automatic blinking, eye movement, and sensor interactions are future work.
 
