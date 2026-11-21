@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-22 — Big Eyes v3.2 Horizontal Sliding Carousel prepared
+
+- Added `firmware/big-eyes-v3-2-horizontal-sliding-carousel/DigitalPet_BigEyes_v3_2_HorizontalSlidingCarousel.ino`.
+- Replaced in-place eye-style roulette changes with a full-frame horizontal slide: the outgoing pair of eyes moves left and the incoming style enters from the right.
+- Applied the same slide transition when DINARA enters after the continuous three-second touch hold.
+- Applied the reverse scene change when the DINARA marquee exits and the pet eyes return from the right.
+- Kept the five eye styles, roulette deceleration, bottom status/progress UI, touch gestures, blink, gaze, happy, fear, and DINARA marquee content.
+- Uses an outgoing frame buffer and one scanline buffer to compose each slide using Adafruit_SPITFT `writePixels()`; the active Adafruit ST7789 driver and verified wiring are unchanged.
+- Added touch-state tracking during slide animations to avoid starting overlapping gestures.
+- Added v3.2 documentation. Compile, upload, and physical testing are pending.
+
 ## 2026-11-22 — Big Eyes v3.1 Visible Eye Carousel prepared
 
 - Added `firmware/big-eyes-v3-1-visible-eye-carousel/DigitalPet_BigEyes_v3_1_VisibleEyeCarousel.ino`.
