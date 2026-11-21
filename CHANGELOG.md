@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-21 — Big Eyes v2 Auto Blink firmware prepared
+
+- Added `firmware/big-eyes-v2-auto-blink/DigitalPet_BigEyes_v2_AutoBlink.ino`.
+- Added non-blocking blink state machine using `millis()`.
+- Added closing, closed, and opening phases with a randomized pause between blinks.
+- Preserved the verified ST7789, SPI Mode 3, GPIO, and rotation 2 configuration.
+- Physical compile/upload/display test is pending.
+
 ## 2026-11-21 — Big Eyes v1 milestone
 
 - Added `firmware/big-eyes-v1/DigitalPet_BigEyes_v1.ino`.
