@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-22 — Big Eyes v2.8 DINARA Marquee tested
+
+- Project owner reported that the v2.8 firmware was tested successfully on the device.
+- Confirmed milestone status in the repository as owner-reported physical testing; no independent automated hardware test report is available.
+- Retained the continuous three-second DINARA marquee, pink text with white outline, pulsing heart decorations, automatic return to pet eyes, and distinct medium-hold color-change gesture.
+
 ## 2026-11-22 — Big Eyes v2.8 DINARA Marquee prepared
 
 - Added `firmware/big-eyes-v2-8-dinara-marquee/DigitalPet_BigEyes_v2_8_DinaraMarquee.ino`.
