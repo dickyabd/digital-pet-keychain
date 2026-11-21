@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-22 — Big Eyes v3.1 Visible Eye Carousel prepared
+
+- Added `firmware/big-eyes-v3-1-visible-eye-carousel/DigitalPet_BigEyes_v3_1_VisibleEyeCarousel.ino`.
+- Changed roulette activation: it now starts immediately when a touch hold reaches 700 ms, not only after release.
+- The roulette continues if the user releases the touch before the animation finishes.
+- Added a bottom-screen `ROLLING...` label and animated progress bar, followed by the selected style name for 1.1 seconds.
+- Preserved the three-second DINARA hold as the higher-priority gesture.
+- Preserved five eye styles, gaze, blink/double blink, happy reaction, five-tap fear, and the existing Adafruit display/touch pin mapping.
+- Added v3.1 documentation. Compile, upload, and physical test are pending.
+
 ## 2026-11-22 — Big Eyes v3.0 Eye Style Roulette prepared
 
 - Added `firmware/big-eyes-v3-0-eye-style-roulette/DigitalPet_BigEyes_v3_0_EyeStyleRoulette.ino`.
