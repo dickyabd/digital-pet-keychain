@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-22 — Big Eyes v2.9 Permanent Pupils prepared
+
+- Added `firmware/big-eyes-v2-9-permanent-pupils/DigitalPet_BigEyes_v2_9_PermanentPupils.ino`.
+- Added dark oval pupils that stay visible in normal eye expressions and move within each colored eye according to gaze direction.
+- Pupils are hidden only as the eyes become almost fully closed during a blink.
+- Retained v2.8 gaze animation, eye themes, short-touch happy reaction, five-tap fear, medium-hold color cycling, and three-second DINARA marquee.
+- Kept the verified ESP32-S3 display and TTP223B pin mapping unchanged.
+- Added v2.9 documentation. Compile, upload, and physical testing are pending.
+
 ## 2026-11-22 — Big Eyes v2.8 DINARA Marquee tested
 
 - Project owner reported that the v2.8 firmware was tested successfully on the device.
