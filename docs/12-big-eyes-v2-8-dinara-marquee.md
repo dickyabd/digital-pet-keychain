@@ -6,7 +6,7 @@ v2.8 adds a special name reveal gesture to the tested v2.6/v2.7 touch interactio
 
 ## Status
 
-**Firmware committed; Verify/Compile and physical LCD test pending.** The TTP223B itself and the previous touch integration were tested by the project owner. The new custom-font marquee and gesture timing have not yet been compiled or visually tested on the physical LCD.
+**Project owner reports v2.8 tested successfully on the physical device.** The integrated firmware adds the DINARA marquee and preserves the previous face/touch behaviors. This repository records the owner-reported test result; no separate automated hardware test report is available.
 
 ## Gesture mapping
 
@@ -83,6 +83,10 @@ SPI.begin(TFT_SCLK, -1, TFT_MOSI, TFT_CS);
 tft.init(240, 240, SPI_MODE3);
 tft.setRotation(2);
 ```
+
+## Test record
+
+The project owner reported the v2.8 build as tested and looking good on the device. The feature set documented above is retained as the tested milestone. Any later firmware changes should be saved as a new version rather than overwriting this baseline.
 
 ## Compile and test procedure
 
