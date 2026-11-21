@@ -591,6 +591,26 @@ void triggerPanic(unsigned long now) {
 }
 
 void updateTouch(unsigned long now) {
+  // Ignore new gestures while the DINARA marquee is running,
+  // but keep tracking the sensor so release state cannot get stuck.
+  if (currentMood == MOOD_NAME) {
+    int nameModeRawTouch = digitalRead(TOUCH_PIN);
+
+    if (nameModeRawTouch != lastRawTouchState) {
+      lastRawTouchState = nameModeRawTouch;
+      rawTouchChangedAt = now;
+    }
+
+    if (nameModeRawTouch != stableTouchState &&
+        now - rawTouchChangedAt >= TOUCH_DEBOUNCE_MS) {
+      stableTouchState = nameModeRawTouch;
+      touchActive = (stableTouchState == HIGH);
+      longPressHandled = true;
+    }
+
+    return;
+  }
+
   int rawTouch = digitalRead(TOUCH_PIN);
 
   // Track raw changes to debounce the sensor output.
