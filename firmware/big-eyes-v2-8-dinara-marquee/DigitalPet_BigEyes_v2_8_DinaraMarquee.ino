@@ -36,7 +36,7 @@
 // RGB565 colors
 #define BG_COLOR       0x0000
 #define EYE_OUTLINE    0x18E3
-#define NAME_PINK      0xF6B7
+#define NAME_PINK      0xFB56
 #define NAME_WHITE     0xFFFF
 
 // Eye theme palette: cyan, yellow, white, magenta
