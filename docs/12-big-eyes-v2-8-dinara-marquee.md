@@ -27,7 +27,7 @@ A long hold is consumed once the marquee starts. Releasing afterward does not al
 
 - Text: `DINARA`
 - Font: Adafruit GFX bundled `FreeSansBoldOblique18pt7b`
-- Letter fill: pink RGB565 `0xF6B7`
+- Letter fill: pink RGB565 `0xFB56`
 - Outline: white RGB565 `0xFFFF`, drawn in eight surrounding offsets
 - Motion: one continuous right-to-left marquee
 - Scroll speed: 2.4 canvas pixels per animation frame (nominal 25 ms frame interval)
