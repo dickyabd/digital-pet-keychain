@@ -28,9 +28,13 @@ This iteration adds gaze directions with pupils and occasional double blinks. It
 
 This candidate removed pupils and enlarged the solid cyan eye shapes. The project owner reported that the eyes were too large and their horizontal movement was not exaggerated enough.
 
-**Milestone 07 — Big Eyes v2.4 Exaggerated Cartoon Gaze: firmware prepared, hardware test pending**
+**Milestone 07 — Big Eyes v2.4 Exaggerated Cartoon Gaze: visual review completed**
 
-This candidate reduces base eye dimensions, increases horizontal and vertical gaze travel, and adds direction-dependent squash-and-stretch. It retains solid eyes only, without pupils or highlights. Physical compile/upload and visual tests are still required.
+The owner supplied a video of v2.4. The eyes were smaller than v2.3 and the gaze movement was more visible. Further cartoon expression and personality behavior were requested.
+
+**Milestone 08 — Big Eyes v2.5 Cartoon Personality Engine: firmware prepared, hardware test pending**
+
+This candidate combines solid pupil-free eyes, automatic idle gaze in six directions, damped-spring movement with slight overshoot, direction-dependent squash-and-stretch, synchronized blinking, occasional double blinking, and a simulated panic reaction through Serial Monitor commands. Physical compile/upload and visual tests are still required. No touch sensor or MPU6050 is connected in this version.
 
 ## Hardware baseline
 
@@ -78,7 +82,8 @@ The LCD VCC connects to the 3.3 V rail and LCD GND to the GND rail. Breadboard p
 - [Big Eyes v2.1 — smooth synchronized auto-blink](firmware/big-eyes-v2-1-smooth-blink/DigitalPet_BigEyes_v2_1_SmoothBlink.ino)
 - [Big Eyes v2.2 — gaze directions + occasional double blink (pupils; experimental)](firmware/big-eyes-v2-2-gaze-double-blink/DigitalPet_BigEyes_v2_2_GazeDoubleBlink.ino)
 - [Big Eyes v2.3 — large solid cartoon eyes without pupils (superseded)](firmware/big-eyes-v2-3-solid-cartoon-eyes/DigitalPet_BigEyes_v2_3_SolidCartoonEyes.ino)
-- [Big Eyes v2.4 — smaller solid eyes, exaggerated gaze, squash-and-stretch (test pending)](firmware/big-eyes-v2-4-exaggerated-cartoon-gaze/DigitalPet_BigEyes_v2_4_ExaggeratedCartoonGaze.ino)
+- [Big Eyes v2.4 — smaller solid eyes, exaggerated gaze, squash-and-stretch](firmware/big-eyes-v2-4-exaggerated-cartoon-gaze/DigitalPet_BigEyes_v2_4_ExaggeratedCartoonGaze.ino)
+- [Big Eyes v2.5 — Cartoon Personality Engine (test pending)](firmware/big-eyes-v2-5-cartoon-personality/DigitalPet_BigEyes_v2_5_CartoonPersonality.ino)
 
 The working display initialization is:
 
@@ -90,7 +95,7 @@ tft.setRotation(2);
 
 **SPI Mode 3** and rotation 2 are retained from the visible Big Eyes v1 prototype.
 
-The firmware uses Adafruit GFX / Adafruit ST7789. The canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together before transferring the bitmap to the LCD. v2.4 uses a 240 × 174 pixel canvas (83,520 bytes). No TFT_eSPI or GC9A01 is used by these sketches.
+The firmware uses Adafruit GFX / Adafruit ST7789. Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together before transferring the bitmap to the LCD. v2.5 uses a 240 × 174 pixel canvas (83,520 bytes). No TFT_eSPI or GC9A01 is used by this version.
 
 ## Documentation
 
@@ -102,13 +107,14 @@ The firmware uses Adafruit GFX / Adafruit ST7789. The canvas-based versions use 
 - [Big Eyes v2.2 Gaze + Double Blink notes](docs/06-big-eyes-v2-2-gaze-double-blink.md)
 - [Big Eyes v2.3 Solid Cartoon Eyes notes](docs/07-big-eyes-v2-3-solid-cartoon-eyes.md)
 - [Big Eyes v2.4 Exaggerated Cartoon Gaze notes](docs/08-big-eyes-v2-4-exaggerated-cartoon-gaze.md)
+- [Big Eyes v2.5 Cartoon Personality Engine notes](docs/09-big-eyes-v2-5-cartoon-personality.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Verify and upload Big Eyes v2.4; tune cartoon gaze and eye dimensions.
-2. Add touch interaction (TTP223B).
-3. Integrate MPU6050 motion sensing.
+1. Verify and upload Big Eyes v2.5; tune idle personality and panic reaction.
+2. Add TTP223B touch interaction.
+3. Integrate MPU6050 after selecting non-conflicting I2C pins.
 4. Add buzzer and tactile buttons.
 5. Design and verify the LiPo power and charging system.
 6. Design the keychain enclosure.
