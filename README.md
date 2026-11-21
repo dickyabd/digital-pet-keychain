@@ -6,7 +6,11 @@ An ESP32-S3-based interactive digital pet keychain. This repository records the 
 
 **Milestone 01 — LCD bring-up: working**
 
-The prototype successfully displayed the text **DIGITAL PET** and a yellow circle on the TFT LCD. The test sketch also sends red, green, and blue screen-fill commands.
+The prototype successfully displayed the text **DIGITAL PET** and a yellow circle on the TFT LCD.
+
+**Milestone 02 — Big Eyes v1: working**
+
+The prototype successfully displayed a pair of large cyan eyes with white highlights on the ST7789 display. This is a static eye prototype; blinking and interaction are not implemented yet.
 
 ## Hardware baseline
 
@@ -48,28 +52,32 @@ The LCD VCC connects to the 3.3 V rail and LCD GND to the GND rail. Breadboard p
 
 ## Firmware
 
-The known-good test sketch is [firmware/lcd-test/lcd-test.ino](firmware/lcd-test/lcd-test.ino).
+- [LCD test baseline](firmware/lcd-test/lcd-test.ino)
+- [Big Eyes v1 — static cyan eyes](firmware/big-eyes-v1/DigitalPet_BigEyes_v1.ino)
 
-The important initialization is:
+The working display initialization is:
 
 ```cpp
 SPI.begin(TFT_SCLK, -1, TFT_MOSI, TFT_CS);
 tft.init(240, 240, SPI_MODE3);
 ```
 
-**SPI Mode 3 is the configuration that produced the visible image in this prototype.** Earlier tests using the default configuration and SPI Mode 2 did not produce the expected image. The successful sketch used the library's default SPI clock setting; lowering the clock alone did not fix the issue.
+**SPI Mode 3 is the configuration that produced visible output in this prototype.** The Big Eyes v1 sketch also uses `tft.setRotation(2)`, which produced the upright orientation in the observed LCD photo.
+
+The Big Eyes v1 sketch uses Adafruit GFX drawing primitives. It does not require TFT_eSPI, sprite buffering, PSRAM allocation, or the MPU6050.
 
 ## Documentation
 
 - [Hardware setup and wiring](docs/01-hardware-setup.md)
 - [Troubleshooting notes](docs/02-troubleshooting.md)
+- [Big Eyes v1 notes](docs/03-big-eyes-v1.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Draw the digital pet face.
-2. Add blinking and idle animations.
-3. Add expressions and touch interaction (TTP223B).
+1. Add automatic eye blinking.
+2. Add eye movement and expressions.
+3. Add touch interaction (TTP223B).
 4. Integrate MPU6050 motion sensing.
 5. Add buzzer and tactile buttons.
 6. Design and verify the LiPo power and charging system.
