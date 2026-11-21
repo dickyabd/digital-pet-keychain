@@ -321,20 +321,6 @@ void triggerRoulette(unsigned long now) {
   lastRenderedColor = getActiveEyeColor();
   lastRenderedEyeStyle = (int)currentEyeStyle;
 
-  // Freeze the face at center while the eye styles roll.
-  currentMood = MOOD_IDLE;
-  currentGazeX = 0.0f;
-  currentGazeY = 0.0f;
-  targetGazeX = 0;
-  targetGazeY = 0;
-  gazeVelocityX = 0.0f;
-  gazeVelocityY = 0.0f;
-
-  blinkState = EYES_OPEN;
-  currentEyeHeight = BASE_EYE_HEIGHT;
-  secondBlinkQueued = false;
-  isSecondBlink = false;
-
   Serial.println("EYE STYLE ROULETTE STARTED!");
 }
 
@@ -744,6 +730,28 @@ void triggerPanic(unsigned long now) {
 
 void updateTouch(unsigned long now) {
   int rawTouch = digitalRead(TOUCH_PIN);
+
+  // Do not launch a second gesture while a visual slide is in progress.
+  // Continue tracking the sensor so the input cannot remain stuck HIGH.
+  if (slideActive) {
+    if (rawTouch != lastRawTouchState) {
+      lastRawTouchState = rawTouch;
+      rawTouchChangedAt = now;
+    }
+
+    if (rawTouch != stableTouchState &&
+        now - rawTouchChangedAt >= TOUCH_DEBOUNCE_MS) {
+      stableTouchState = rawTouch;
+      touchActive = (stableTouchState == HIGH);
+    }
+
+    if (touchActive) {
+      longPressHandled = true;
+      nameHoldHandled = true;
+    }
+
+    return;
+  }
 
   // Debounce the TTP223B digital output.
   if (rawTouch != lastRawTouchState) {
@@ -1368,6 +1376,9 @@ void beginEyeStyleSlide(
     currentMood,
     false
   );
+
+  lastRenderedColor = getActiveEyeColor();
+  lastRenderedEyeStyle = (int)currentEyeStyle;
 
   beginSlideTransition(now, durationMs, action);
 }
