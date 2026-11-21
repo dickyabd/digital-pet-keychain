@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-11-22 — Big Eyes v2.8 DINARA Marquee prepared
+
+- Added `firmware/big-eyes-v2-8-dinara-marquee/DigitalPet_BigEyes_v2_8_DinaraMarquee.ino`.
+- Added a continuous three-second touch-and-hold gesture to launch a one-pass right-to-left `DINARA` marquee.
+- Styled the name with bundled FreeSans Bold Oblique 18 pt, pink fill, and a white outline.
+- Added six pulsing pink hearts with white outlines around the moving name.
+- Returns to the normal pet eyes after the full word exits the left edge.
+- Changed the medium-hold gesture: hold 700 ms to under three seconds, then release to change eye color. A continuous three-second hold is reserved for the DINARA marquee.
+- Ignores additional touch gestures while the marquee is running.
+- Preserved idle gaze, blink/double blink, happy reaction, five-tap fear, and the verified LCD / touch pin mapping.
+- Added v2.8 documentation. Verify/Compile, upload, and physical visual testing are pending.
+
 ## 2026-11-22 — Big Eyes v2.7 Five-Tap Fear Reaction prepared
 
 - Added `firmware/big-eyes-v2-7-five-tap-fear/DigitalPet_BigEyes_v2_7_FiveTapFear.ino`.
