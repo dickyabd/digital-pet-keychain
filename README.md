@@ -56,6 +56,10 @@ The project owner reports that the v2.8 firmware was tested successfully. A cont
 
 This experimental iteration adds dark oval pupils that remain visible during normal expressions and move within the colored eye shapes according to gaze direction. Pupils are naturally hidden while the eyes are almost fully closed during a blink. All v2.8 touch gestures and DINARA marquee behavior are retained. Physical testing is pending.
 
+**Milestone 14 — Big Eyes v3.0 Eye Style Roulette: firmware prepared, device test pending**
+
+This version adds five eye presets: Normal (white sclera / navy oval pupil), Cute (purple sclera / small green pupil), Star (lime sclera / yellow star pupil), Heart (white sclera / pink heart pupil), and Fire (amber sclera / flame pupil). A medium touch hold followed by release starts a roughly 2.2-second roulette. Styles change quickly at first, then progressively more slowly before a random style is selected. The selected style remains active until the next roulette or restart. Existing gaze, blink, happy, fear, and DINARA behavior is retained. Physical testing is pending.
+
 ## Hardware baseline
 
 | Item | Value |
@@ -120,6 +124,7 @@ The LCD VCC and TTP223B VCC connect to 3.3 V. LCD GND and TTP223B GND share comm
 - [Big Eyes v2.7 — Five-Tap Fear Reaction (test pending)](firmware/big-eyes-v2-7-five-tap-fear/DigitalPet_BigEyes_v2_7_FiveTapFear.ino)
 - [Big Eyes v2.8 — DINARA pink marquee with popping hearts (tested)](firmware/big-eyes-v2-8-dinara-marquee/DigitalPet_BigEyes_v2_8_DinaraMarquee.ino)
 - [Big Eyes v2.9 — permanent moving pupils (device test pending)](firmware/big-eyes-v2-9-permanent-pupils/DigitalPet_BigEyes_v2_9_PermanentPupils.ino)
+- [Big Eyes v3.0 — five eye styles + slowing roulette (device test pending)](firmware/big-eyes-v3-0-eye-style-roulette/DigitalPet_BigEyes_v3_0_EyeStyleRoulette.ino)
 - [TTP223B standalone sensor test](firmware/touch-test/DigitalPet_TouchTest_v1.ino)
 
 The working LCD initialization is:
@@ -147,12 +152,13 @@ Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together be
 - [Big Eyes v2.7 Five-Tap Fear Reaction notes](docs/11-big-eyes-v2-7-five-tap-fear.md)
 - [Big Eyes v2.8 DINARA Marquee notes](docs/12-big-eyes-v2-8-dinara-marquee.md)
 - [Big Eyes v2.9 Permanent Pupils notes](docs/13-big-eyes-v2-9-permanent-pupils.md)
+- [Big Eyes v3.0 Eye Style Roulette notes](docs/14-big-eyes-v3-0-eye-style-roulette.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Compile, upload, and visually test v2.9 permanent pupil placement and movement on the device.
-2. Confirm the five-tap fear reaction behavior in the v2.9 build.
+1. Compile, upload, and visually test v3.0 eye styles, roulette slowdown, and touch gestures on the device.
+2. Confirm five-tap fear and DINARA behavior remain correct in v3.0.
 3. Integrate MPU6050 after selecting non-conflicting I2C pins.
 4. Add buzzer and tactile buttons.
 5. Design and verify the LiPo power and charging system.
