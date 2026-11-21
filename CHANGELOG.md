@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-21 — Big Eyes v2.3 Solid Cartoon Eyes prepared
+
+- Added `firmware/big-eyes-v2-3-solid-cartoon-eyes/DigitalPet_BigEyes_v2_3_SolidCartoonEyes.ino`.
+- Removed pupils, highlights, and inner dots to match the requested design.
+- Enlarged the solid cyan eye shapes to 96 × 150 pixels each.
+- Expanded the off-screen canvas to 240 × 174 pixels (83,520 bytes) to use more of the LCD area.
+- Added cartoon-like gaze motion by moving the eye shapes themselves through center, left, right, up, down, upper-left, and upper-right directions.
+- Retained synchronized blinking and occasional double blinking.
+- Added v2.3 design notes. Physical compile/upload and visual testing are pending.
+
 ## 2026-11-21 — Big Eyes v2.2 Gaze + Double Blink prepared
 
 - Added `firmware/big-eyes-v2-2-gaze-double-blink/DigitalPet_BigEyes_v2_2_GazeDoubleBlink.ino`.
@@ -7,7 +17,7 @@
 - Added smooth pupil movement with bounded offsets inside each eye.
 - Added occasional double blink behavior.
 - Preserved the v2.1 off-screen canvas renderer and verified ST7789 wiring / SPI Mode 3 settings.
-- Physical compile, upload, and visual tests are pending.
+- Physical compile, upload, and visual tests were pending.
 
 ## 2026-11-21 — Big Eyes v2.1 Smooth Blink visually verified
 
