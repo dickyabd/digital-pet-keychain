@@ -52,6 +52,10 @@ This candidate adds a fear reaction when five short taps occur within three seco
 
 The project owner reports that the v2.8 firmware was tested successfully. A continuous touch hold for three seconds launches a one-pass right-to-left DINARA marquee. The name uses a pink FreeSans Bold Oblique font with a white outline and pulsing pink hearts outlined in white. After the whole word exits the left edge, the pet face returns automatically. A 700 ms to under-three-second hold, when released, changes the eye color.
 
+**Milestone 13 — Big Eyes v2.9 Permanent Pupils: firmware prepared, device test pending**
+
+This experimental iteration adds dark oval pupils that remain visible during normal expressions and move within the colored eye shapes according to gaze direction. Pupils are naturally hidden while the eyes are almost fully closed during a blink. All v2.8 touch gestures and DINARA marquee behavior are retained. Physical testing is pending.
+
 ## Hardware baseline
 
 | Item | Value |
@@ -115,6 +119,7 @@ The LCD VCC and TTP223B VCC connect to 3.3 V. LCD GND and TTP223B GND share comm
 - [Big Eyes v2.6 — Touch Interaction (tested)](firmware/big-eyes-v2-6-touch-interaction/DigitalPet_BigEyes_v2_6_TouchInteraction.ino)
 - [Big Eyes v2.7 — Five-Tap Fear Reaction (test pending)](firmware/big-eyes-v2-7-five-tap-fear/DigitalPet_BigEyes_v2_7_FiveTapFear.ino)
 - [Big Eyes v2.8 — DINARA pink marquee with popping hearts (tested)](firmware/big-eyes-v2-8-dinara-marquee/DigitalPet_BigEyes_v2_8_DinaraMarquee.ino)
+- [Big Eyes v2.9 — permanent moving pupils (device test pending)](firmware/big-eyes-v2-9-permanent-pupils/DigitalPet_BigEyes_v2_9_PermanentPupils.ino)
 - [TTP223B standalone sensor test](firmware/touch-test/DigitalPet_TouchTest_v1.ino)
 
 The working LCD initialization is:
@@ -141,15 +146,17 @@ Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together be
 - [Big Eyes v2.6 Touch Interaction notes](docs/10-big-eyes-v2-6-touch-interaction.md)
 - [Big Eyes v2.7 Five-Tap Fear Reaction notes](docs/11-big-eyes-v2-7-five-tap-fear.md)
 - [Big Eyes v2.8 DINARA Marquee notes](docs/12-big-eyes-v2-8-dinara-marquee.md)
+- [Big Eyes v2.9 Permanent Pupils notes](docs/13-big-eyes-v2-9-permanent-pupils.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Confirm the five-tap fear reaction behavior remains correct in the tested v2.8 build.
-2. Integrate MPU6050 after selecting non-conflicting I2C pins.
-3. Add buzzer and tactile buttons.
-4. Design and verify the LiPo power and charging system.
-5. Design the keychain enclosure.
+1. Compile, upload, and visually test v2.9 permanent pupil placement and movement on the device.
+2. Confirm the five-tap fear reaction behavior in the v2.9 build.
+3. Integrate MPU6050 after selecting non-conflicting I2C pins.
+4. Add buzzer and tactile buttons.
+5. Design and verify the LiPo power and charging system.
+6. Design the keychain enclosure.
 
 ## Safety and reproducibility notes
 
