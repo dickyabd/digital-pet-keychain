@@ -18,7 +18,7 @@ The first non-blocking blinking version was tested and showed visible drawing ar
 
 **Milestone 04 — Big Eyes v2.1 Smooth Blink: visual test passed**
 
-The updated sketch draws both eyes into one 16-bit off-screen canvas and transfers the combined image to the LCD. The project owner reported that the latest video no longer showed the earlier visible glitch. This is a visual prototype test, not a measured FPS or long-duration reliability test.
+The updated sketch draws both eyes into one 16-bit off-screen canvas and transfers the combined image to the LCD. The project owner reported that the latest video no longer showed the earlier visible glitch.
 
 **Milestone 05 — Big Eyes v2.2 Gaze + Double Blink: experimental**
 
@@ -26,15 +26,23 @@ This iteration adds gaze directions with pupils and occasional double blinks. It
 
 **Milestone 06 — Big Eyes v2.3 Solid Cartoon Eyes: superseded design iteration**
 
-This candidate removed pupils and enlarged the solid cyan eye shapes. The project owner reported that the eyes were too large and their horizontal movement was not exaggerated enough.
+This candidate removed pupils and enlarged the solid cyan eye shapes. The owner reported that the eyes were too large and their horizontal movement was not exaggerated enough.
 
 **Milestone 07 — Big Eyes v2.4 Exaggerated Cartoon Gaze: visual review completed**
 
 The owner supplied a video of v2.4. The eyes were smaller than v2.3 and the gaze movement was more visible. Further cartoon expression and personality behavior were requested.
 
-**Milestone 08 — Big Eyes v2.5 Cartoon Personality Engine: firmware prepared, hardware test pending**
+**Milestone 08 — Big Eyes v2.5 Cartoon Personality Engine: test reported successful**
 
-This candidate combines solid pupil-free eyes, automatic idle gaze in six directions, damped-spring movement with slight overshoot, direction-dependent squash-and-stretch, synchronized blinking, occasional double blinking, and a simulated panic reaction through Serial Monitor commands. Physical compile/upload and visual tests are still required. No touch sensor or MPU6050 is connected in this version.
+The owner tested the automatic personality behavior and confirmed the Serial Monitor panic, blink, and center-gaze commands responded. The sketch includes random idle gaze, spring-like movement, squash-and-stretch, blinking, double blinking, and simulated panic.
+
+**Milestone 09 — TTP223B standalone test: working**
+
+The TTP223B v1.0 High Level module was tested separately on GPIO 4. Serial Monitor showed touch and release events.
+
+**Milestone 10 — Big Eyes v2.6 Touch Interaction: firmware prepared, integrated hardware test pending**
+
+This candidate adds short-touch happy feedback and long-touch eye color selection to the v2.5 personality engine. The integrated firmware has not yet been compiled or tested on the physical LCD with the TTP223B connected.
 
 ## Hardware baseline
 
@@ -45,6 +53,8 @@ This candidate combines solid pupil-free eyes, automatic idle gaze in six direct
 | LCD controller | ST7789 |
 | Resolution | 240 × 240 pixels |
 | Interface | SPI |
+| Touch sensor | TTP223B v1.0, High Level output |
+| Touch signal | GPIO 4 |
 | Arduino IDE | 2.3.11 |
 | ESP32 Arduino core | Espressif Systems 3.3.7 |
 | Board selection | ESP32S3 Dev Module |
@@ -65,6 +75,16 @@ This candidate combines solid pupil-free eyes, automatic idle gaze in six direct
 
 The LCD's SDA label is the SPI data input (MOSI) for this module; it is not being used as I²C SDA. The module has no exposed CS pin; the sketches use `TFT_CS = -1`.
 
+## Touch sensor wiring
+
+| TTP223B pin | ESP32-S3 connection |
+|---|---|
+| SIG | GPIO 4 |
+| VCC | 3.3 V |
+| GND | GND |
+
+The module is marked High Level. The standalone test produced `TOUCH DETECTED!` and `TOUCH RELEASED!` events in Serial Monitor. Software debounce is used in v2.6.
+
 ## Breadboard power distribution
 
 | ESP32-S3 | Breadboard rail | Jumper color |
@@ -72,7 +92,7 @@ The LCD's SDA label is the SPI data input (MOSI) for this module; it is not bein
 | 3V3 | Red (+) rail | Black |
 | GND | Blue (-) rail | White |
 
-The LCD VCC connects to the 3.3 V rail and LCD GND to the GND rail. Breadboard power rails may be split into separate segments. Do not assume every section is electrically continuous.
+The LCD VCC and TTP223B VCC connect to 3.3 V. LCD GND and TTP223B GND share common ground. Breadboard power rails may be split into separate segments. Do not assume every section is electrically continuous.
 
 ## Firmware
 
@@ -83,9 +103,11 @@ The LCD VCC connects to the 3.3 V rail and LCD GND to the GND rail. Breadboard p
 - [Big Eyes v2.2 — gaze directions + occasional double blink (pupils; experimental)](firmware/big-eyes-v2-2-gaze-double-blink/DigitalPet_BigEyes_v2_2_GazeDoubleBlink.ino)
 - [Big Eyes v2.3 — large solid cartoon eyes without pupils (superseded)](firmware/big-eyes-v2-3-solid-cartoon-eyes/DigitalPet_BigEyes_v2_3_SolidCartoonEyes.ino)
 - [Big Eyes v2.4 — smaller solid eyes, exaggerated gaze, squash-and-stretch](firmware/big-eyes-v2-4-exaggerated-cartoon-gaze/DigitalPet_BigEyes_v2_4_ExaggeratedCartoonGaze.ino)
-- [Big Eyes v2.5 — Cartoon Personality Engine (test pending)](firmware/big-eyes-v2-5-cartoon-personality/DigitalPet_BigEyes_v2_5_CartoonPersonality.ino)
+- [Big Eyes v2.5 — Cartoon Personality Engine](firmware/big-eyes-v2-5-cartoon-personality/DigitalPet_BigEyes_v2_5_CartoonPersonality.ino)
+- [Big Eyes v2.6 — Touch Interaction (integrated test pending)](firmware/big-eyes-v2-6-touch-interaction/DigitalPet_BigEyes_v2_6_TouchInteraction.ino)
+- [TTP223B standalone sensor test](firmware/touch-test/DigitalPet_TouchTest_v1.ino)
 
-The working display initialization is:
+The working LCD initialization is:
 
 ```cpp
 SPI.begin(TFT_SCLK, -1, TFT_MOSI, TFT_CS);
@@ -93,9 +115,7 @@ tft.init(240, 240, SPI_MODE3);
 tft.setRotation(2);
 ```
 
-**SPI Mode 3** and rotation 2 are retained from the visible Big Eyes v1 prototype.
-
-The firmware uses Adafruit GFX / Adafruit ST7789. Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together before transferring the bitmap to the LCD. v2.5 uses a 240 × 174 pixel canvas (83,520 bytes). No TFT_eSPI or GC9A01 is used by this version.
+Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together before transferring the bitmap to the LCD. v2.6 uses a 240 × 174 pixel canvas (83,520 bytes).
 
 ## Documentation
 
@@ -108,21 +128,22 @@ The firmware uses Adafruit GFX / Adafruit ST7789. Canvas-based versions use a 16
 - [Big Eyes v2.3 Solid Cartoon Eyes notes](docs/07-big-eyes-v2-3-solid-cartoon-eyes.md)
 - [Big Eyes v2.4 Exaggerated Cartoon Gaze notes](docs/08-big-eyes-v2-4-exaggerated-cartoon-gaze.md)
 - [Big Eyes v2.5 Cartoon Personality Engine notes](docs/09-big-eyes-v2-5-cartoon-personality.md)
+- [Big Eyes v2.6 Touch Interaction notes](docs/10-big-eyes-v2-6-touch-interaction.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Verify and upload Big Eyes v2.5; tune idle personality and panic reaction.
-2. Add TTP223B touch interaction.
-3. Integrate MPU6050 after selecting non-conflicting I2C pins.
-4. Add buzzer and tactile buttons.
-5. Design and verify the LiPo power and charging system.
-6. Design the keychain enclosure.
+1. Verify and upload Big Eyes v2.6; test short and long touch behavior.
+2. Integrate MPU6050 after selecting non-conflicting I2C pins.
+3. Add buzzer and tactile buttons.
+4. Design and verify the LiPo power and charging system.
+5. Design the keychain enclosure.
 
 ## Safety and reproducibility notes
 
-- The successful prototype was powered from the PC USB port. The LiPo battery has **not** been integrated.
+- The successful prototype is powered from the PC USB port. The LiPo battery has **not** been integrated.
 - Do not connect the LiPo directly to ESP32 3V3 or 5V.
 - Battery charging, protection, and voltage regulation still need a separately verified design.
-- No multimeter continuity or voltage measurements were performed during this setup. The wiring is documented from the observed working prototype and user-confirmed connections; verify board pin labels and breadboard rail continuity when reproducing it.
-- Keep the successful firmware as a baseline before making changes.
+- No multimeter continuity or voltage measurements were performed during the initial wiring setup. Verify board pin labels and breadboard rail continuity when reproducing it.
+- Disconnect USB power before changing jumper wiring.
+- Keep known-good firmware versions as baselines before making changes.
