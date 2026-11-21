@@ -5,8 +5,8 @@
 #include <math.h>
 
 // ============================================================
-// DIGITAL PET - BIG EYES V2.9
-// Permanent Pupils + DINARA Marquee + Five-Tap Fear + Touch Interaction
+// DIGITAL PET - BIG EYES V3.0
+// Five Eye Styles + Slowing Roulette + DINARA Marquee + Five-Tap Fear
 // ESP32-S3 N16R8 + YY-PS130-V4.0 ST7789 LCD
 // ============================================================
 
@@ -226,6 +226,7 @@ int lastRenderedGazeY = 999;
 
 uint16_t lastRenderedColor = 0x0000;
 PetMood lastRenderedMood = MOOD_PANIC;
+int lastRenderedEyeStyle = -1;
 
 // ============================================================
 // SMALL HELPERS
@@ -767,7 +768,7 @@ void updateTouch(unsigned long now) {
   }
 
   // A continuous 3-second hold launches the DINARA marquee once.
-  // A 700 ms to under 3-second hold changes color only on release.
+  // A 700 ms to under 3-second hold starts eye-style roulette on release.
   if (touchActive &&
       !longPressHandled &&
       now - touchStartedAt >= NAME_HOLD_MS) {
