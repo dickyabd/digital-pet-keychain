@@ -34,15 +34,19 @@ The owner supplied a video of v2.4. The eyes were smaller than v2.3 and the gaze
 
 **Milestone 08 — Big Eyes v2.5 Cartoon Personality Engine: test reported successful**
 
-The owner tested the automatic personality behavior and confirmed the Serial Monitor panic, blink, and center-gaze commands responded. The sketch includes random idle gaze, spring-like movement, squash-and-stretch, blinking, double blinking, and simulated panic.
+The owner tested the automatic personality behavior and confirmed the Serial Monitor panic, blink, and center-gaze commands responded.
 
 **Milestone 09 — TTP223B standalone test: working**
 
 The TTP223B v1.0 High Level module was tested separately on GPIO 4. Serial Monitor showed touch and release events.
 
-**Milestone 10 — Big Eyes v2.6 Touch Interaction: firmware prepared, integrated hardware test pending**
+**Milestone 10 — Big Eyes v2.6 Touch Interaction: test reported successful**
 
-This candidate adds short-touch happy feedback and long-touch eye color selection to the v2.5 personality engine. The integrated firmware has not yet been compiled or tested on the physical LCD with the TTP223B connected.
+The owner tested the integrated touch behavior and reported that it looked good. Short touch triggers a happy reaction; long touch changes the eye color.
+
+**Milestone 11 — Big Eyes v2.7 Five-Tap Fear Reaction: firmware prepared, test pending**
+
+This candidate adds a fear reaction when five short taps occur within three seconds. The eyes shrink, move closer together, and tremble briefly. Long press remains reserved for color cycling and does not count as a tap. Physical Verify/Upload and behavior testing are pending.
 
 ## Hardware baseline
 
@@ -83,7 +87,7 @@ The LCD's SDA label is the SPI data input (MOSI) for this module; it is not bein
 | VCC | 3.3 V |
 | GND | GND |
 
-The module is marked High Level. The standalone test produced `TOUCH DETECTED!` and `TOUCH RELEASED!` events in Serial Monitor. Software debounce is used in v2.6.
+The module is marked High Level. The standalone test produced `TOUCH DETECTED!` and `TOUCH RELEASED!` events in Serial Monitor. The integrated touch behavior in v2.6 was reported as working.
 
 ## Breadboard power distribution
 
@@ -104,7 +108,8 @@ The LCD VCC and TTP223B VCC connect to 3.3 V. LCD GND and TTP223B GND share comm
 - [Big Eyes v2.3 — large solid cartoon eyes without pupils (superseded)](firmware/big-eyes-v2-3-solid-cartoon-eyes/DigitalPet_BigEyes_v2_3_SolidCartoonEyes.ino)
 - [Big Eyes v2.4 — smaller solid eyes, exaggerated gaze, squash-and-stretch](firmware/big-eyes-v2-4-exaggerated-cartoon-gaze/DigitalPet_BigEyes_v2_4_ExaggeratedCartoonGaze.ino)
 - [Big Eyes v2.5 — Cartoon Personality Engine](firmware/big-eyes-v2-5-cartoon-personality/DigitalPet_BigEyes_v2_5_CartoonPersonality.ino)
-- [Big Eyes v2.6 — Touch Interaction (integrated test pending)](firmware/big-eyes-v2-6-touch-interaction/DigitalPet_BigEyes_v2_6_TouchInteraction.ino)
+- [Big Eyes v2.6 — Touch Interaction (tested)](firmware/big-eyes-v2-6-touch-interaction/DigitalPet_BigEyes_v2_6_TouchInteraction.ino)
+- [Big Eyes v2.7 — Five-Tap Fear Reaction (test pending)](firmware/big-eyes-v2-7-five-tap-fear/DigitalPet_BigEyes_v2_7_FiveTapFear.ino)
 - [TTP223B standalone sensor test](firmware/touch-test/DigitalPet_TouchTest_v1.ino)
 
 The working LCD initialization is:
@@ -115,7 +120,7 @@ tft.init(240, 240, SPI_MODE3);
 tft.setRotation(2);
 ```
 
-Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together before transferring the bitmap to the LCD. v2.6 uses a 240 × 174 pixel canvas (83,520 bytes).
+Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together before transferring the bitmap to the LCD. v2.7 uses a 240 × 174 pixel canvas (83,520 bytes).
 
 ## Documentation
 
@@ -129,11 +134,12 @@ Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together be
 - [Big Eyes v2.4 Exaggerated Cartoon Gaze notes](docs/08-big-eyes-v2-4-exaggerated-cartoon-gaze.md)
 - [Big Eyes v2.5 Cartoon Personality Engine notes](docs/09-big-eyes-v2-5-cartoon-personality.md)
 - [Big Eyes v2.6 Touch Interaction notes](docs/10-big-eyes-v2-6-touch-interaction.md)
+- [Big Eyes v2.7 Five-Tap Fear Reaction notes](docs/11-big-eyes-v2-7-five-tap-fear.md)
 - [Changelog](CHANGELOG.md)
 
 ## Next milestones
 
-1. Verify and upload Big Eyes v2.6; test short and long touch behavior.
+1. Verify and upload Big Eyes v2.7; test the five-tap fear reaction.
 2. Integrate MPU6050 after selecting non-conflicting I2C pins.
 3. Add buzzer and tactile buttons.
 4. Design and verify the LiPo power and charging system.
