@@ -9,9 +9,9 @@ What's changed in this package:
 - Eye animation, touch gestures, roulette, marquee/sparkle and other existing firmware behavior are retained.
 
 Files (keep together):
-- DigitalPet_CrucialSkate_10Frame.ino
-- inline_skate_frames.h (new 10-frame Crucial Skate intro)
-- crucial_logo_frames.h (previous Crucial Skate logo animation, retained)
+- DigitalPet_CrucialSkate_Intro10F_KeepOriginalLogo.ino
+- inline_skate_frames.h (new 10-frame Crucial Skate intro; used by command I)
+- crucial_logo_frames.h (original Crucial Skate logo animation; used by command L)
 - pet_mood.h
 - partitions.csv
 
@@ -24,4 +24,4 @@ P = panic, B = blink, C = center
 Board settings used by the previous firmware package: ESP32S3 Dev Module, Flash Size 16MB.
 The custom partition issue discussed previously is separate; verify the selected APP partition is large enough before compiling/uploading.
 
-Not compile-tested or hardware-tested in this environment.
+This package is committed on the main branch. Compile/upload and physical behavior should be verified on the target ESP32-S3 device before treating the package as hardware-validated.
