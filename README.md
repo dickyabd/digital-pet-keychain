@@ -68,6 +68,10 @@ This revision makes the eye-style roulette begin immediately when a touch hold r
 
 This revision changes the eye-style roulette from in-place style replacement to a full-frame horizontal slide: the outgoing pair of eyes moves left while the incoming style enters from the right. The same transition is used when DINARA enters after the three-second hold and when the eyes return after the marquee exits. It retains the five eye styles, slowing roulette, visible status/progress indicator, touch gesture mapping, and Adafruit ST7789 wiring. Physical testing is pending.
 
+**Milestone 17 — Crucial Skate Intro + Original Logo: added to main**
+
+The latest firmware package adds a new 10-frame Crucial Skate intro while retaining the original Crucial Skate logo animation. Serial command `I` plays the new intro, `L` plays the original logo animation, and `S` plays both in sequence. Both animations run at 100 ms per frame. Existing eye animation, touch interactions, roulette, DINARA marquee/sparkle, and the animation background cleanup are retained. See the [firmware package](firmware/DigitalPet_CrucialSkate_Intro10F_KeepOriginalLogo/) and [release notes](docs/17-crucial-skate-intro.md).
+
 ## Hardware baseline
 
 | Item | Value |
@@ -120,6 +124,7 @@ The LCD VCC and TTP223B VCC connect to 3.3 V. LCD GND and TTP223B GND share comm
 
 ## Firmware
 
+- [Crucial Skate Intro 10F + Original Logo — latest animation package](firmware/DigitalPet_CrucialSkate_Intro10F_KeepOriginalLogo/)
 - [LCD test baseline](firmware/lcd-test/lcd-test.ino)
 - [Big Eyes v1 — static cyan eyes](firmware/big-eyes-v1/DigitalPet_BigEyes_v1.ino)
 - [Big Eyes v2 — first auto-blink iteration (visual artifacts)](firmware/big-eyes-v2-auto-blink/DigitalPet_BigEyes_v2_AutoBlink.ino)
@@ -149,6 +154,7 @@ Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together be
 
 ## Documentation
 
+- [Crucial Skate Intro + Original Logo release notes](docs/17-crucial-skate-intro.md)
 - [Hardware setup and wiring](docs/01-hardware-setup.md)
 - [Troubleshooting notes](docs/02-troubleshooting.md)
 - [Big Eyes v1 notes](docs/03-big-eyes-v1.md)
@@ -169,12 +175,11 @@ Canvas-based versions use a 16-bit `GFXcanvas16` to render both eyes together be
 
 ## Next milestones
 
-1. Compile, upload, and visually test v3.2 horizontal style-to-style slides, DINARA entrance, and return-to-eyes slide.
-2. Confirm five-tap fear, roulette slowdown, and touch gesture priority remain correct in v3.2.
-3. Integrate MPU6050 after selecting non-conflicting I2C pins.
-4. Add buzzer and tactile buttons.
-5. Design and verify the LiPo power and charging system.
-6. Design the keychain enclosure.
+1. Continue device-side verification of the latest Crucial Skate animation package and confirm all serial animation commands behave as expected.
+2. Integrate MPU6050 after selecting non-conflicting I2C pins.
+3. Add buzzer and tactile buttons.
+4. Design and verify the LiPo power and charging system.
+5. Design the keychain enclosure.
 
 ## Safety and reproducibility notes
 
