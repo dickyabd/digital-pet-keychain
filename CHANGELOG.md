@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-24 — Crucial Skate Intro 10-frame package added
+
+- Added `firmware/DigitalPet_CrucialSkate_Intro10F_KeepOriginalLogo/` as the latest firmware package.
+- Added a new 10-frame Crucial Skate intro, replacing the previous Inline Skate animation on serial command `I`.
+- Retained the original Crucial Skate logo animation on serial command `L`.
+- Added serial command `S` to play the new intro followed by the original logo animation.
+- Both animation sequences use 100 ms per frame.
+- Retained the existing eye animation, touch interactions, roulette, DINARA marquee/sparkle, and background cleanup after full-screen animations.
+- Package includes the sketch, both animation frame headers, `pet_mood.h`, and `partitions.csv`.
+- The package is present on `main`; this changelog records its contents and intended behavior, not an independent compile or hardware-test result.
+
 ## 2026-11-22 — Big Eyes v3.2 Horizontal Sliding Carousel prepared
 
 - Added `firmware/big-eyes-v3-2-horizontal-sliding-carousel/DigitalPet_BigEyes_v3_2_HorizontalSlidingCarousel.ino`.
